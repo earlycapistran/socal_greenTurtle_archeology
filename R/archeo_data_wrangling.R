@@ -2,7 +2,7 @@ library(dplyr)
 library(forcats)
 library(stringr)
 
-raw_data <- read.csv("./data/archeo_search_terms_data_20251117.csv")
+raw_data <- read.csv("./data/raw/archeo_searchTerms_data_readOnly.csv")
 
 ### Make classification scheme ------------------------------
 classification <- data.frame(
@@ -63,5 +63,5 @@ archaeo_plot_data_full <- archaeo_plot_data %>%
   select(- species_search_term)
 
 # Save the new dataframe for plotting
-saveRDS(archaeo_plot_data_full, "./data/archaeo_plot_data")
-write.csv(archaeo_plot_data_full, "./data/archaeo_plot_data_clean.csv")
+saveRDS(archaeo_plot_data_full, "./data/processed/archaeo_plot_data")
+write.csv(archaeo_plot_data_full, "./data/processed/archaeo_plot_data_clean.csv")
