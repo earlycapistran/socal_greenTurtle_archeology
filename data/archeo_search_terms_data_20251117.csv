@@ -1,4 +1,4 @@
-base_search_terms,excluded_terms,main_term ,species,num_results,taxon,subtaxon,notes
+﻿base_search_terms,excluded_terms,main_term ,species,num_results,category,subcategory,notes
 "intitle:california AND intext:archaeology OR intext:archeology AND intext:""faunal remains"" AND intext:""southern california"" "," -""baja california"" -""environmental impact""",,ALL,338,,,
 "intitle:california AND intext:archaeology OR intext:archeology AND intext:""faunal remains"" AND intext:""southern california"" "," -""baja california"" -""environmental impact""","AND intext:""sea turtle"" OR intext:""marine turtle""",sea turtle OR marine turtle,2,Marine Reptiles,Cheloniidae,1 record is 19th century
 "intitle:california AND intext:archaeology OR intext:archeology AND intext:""faunal remains"" AND intext:""southern california"" "," -""baja california"" -""environmental impact""","AND intext:""abalone""",abalone,147,Invertebrates,Invertebrates,
@@ -39,4 +39,4 @@ base_search_terms,excluded_terms,main_term ,species,num_results,taxon,subtaxon,n
 "intitle:california AND intext:archaeology OR intext:archeology AND intext:""faunal remains"" AND intext:""southern california"" "," -""baja california"" -""environmental impact""",AND intext:mussel,mussel,160,Invertebrates,Invertebrates,
 "intitle:california AND intext:archaeology OR intext:archeology AND intext:""faunal remains"" AND intext:""southern california"" "," -""baja california"" -""environmental impact""",AND intext:urchin,urchin,55,Invertebrates,Invertebrates,
 "intitle:california AND intext:archaeology OR intext:archeology AND intext:""faunal remains"" AND intext:""southern california"" "," -""baja california"" -""environmental impact""",AND intext:turban snail ,turban snail,61,Invertebrates,Invertebrates,
-"intitle:california AND intext:archaeology OR intext:archeology AND intext:""faunal remains"" AND intext:""southern california"" "," -""baja california"" -""environmental impact""",AND intext:chiton,chiton,49,Invertebrates,Invertebrates,
+"intitle:california AND intext:archaeology OR intext:archeology AND intext:""faunal remains"" AND intext:""southern california"" "," -""baja california"" -""environmental impact""",AND intext:chiton,chiton,49,Invertebrates,Invertebrates
