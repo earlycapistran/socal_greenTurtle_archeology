@@ -31,15 +31,18 @@ plot_data <- faunal_data %>%
   # Arrange the data for proper ordering in the plot
   arrange(category_rank, subcategory_rank)
 
-# Print to check the ranking
-print(plot_data %>% 
-        select(category, category_total, category_rank) %>% 
-        distinct() %>% 
-        arrange(category_rank))
 # Create color palette
-n_subcategories <- n_distinct(plot_data$subcategory)
-color_palette <- viridis(n_subcategories, option = "viridis")
-names(color_palette) <- levels(plot_data$subcategory)
+n_colors <- nrow(plot_data)
+color_palette <- viridis(n_colors, option = "viridis")
+
+# Get the unique subcategories in the order they appear in plot_data
+ordered_subcategories <- plot_data %>%
+  arrange(category_rank, subcategory_rank) %>%
+  pull(subcategory) %>%
+  unique()
+
+# Create a named vector of colors, matching the order of subcategories
+subcategory_colors <- setNames(color_palette, ordered_subcategories)
 
 # Create the lollipop chart
 ggplot(plot_data, aes(x = subcategory_total, 
@@ -56,7 +59,7 @@ ggplot(plot_data, aes(x = subcategory_total,
   scale_x_log10(breaks = c(1, 10, 100, 1000), 
                 labels = scales::comma_format(),
                 limits = c(1, max(plot_data$category_total) * 1.2)) +
-  scale_color_manual(values = color_palette) +
+  scale_color_manual(values = subcategory_colors) +
   labs(x = "Number of References (log scale)",
        y = NULL,
        color = "Subcategory") +
