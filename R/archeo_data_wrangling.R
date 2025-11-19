@@ -23,7 +23,7 @@ classification <- data.frame(
             rep("Large Cetaceans", 3), "Sea Otters", rep("Seabirds", 3), 
             "Sea Turtles", rep("Abalone", 3), "Other Gastropods", 
             "Bivalves", "Unclassified Shellfish", "Echinoderms", "Chitons"),
-  category = c(rep("Fish", 11), rep("Marine Mammals", 16), rep("Birds", 3), 
+  category = c(rep("Fish", 12), rep("Marine Mammals", 15), rep("Birds", 3), 
                "Reptiles", rep("Invertebrates", 8)),
   scientific_name = c(
     "Xiphias gladius", "Thunnus spp.", "Elasmobranchiia", "Sphyraena spp.", 
@@ -45,7 +45,7 @@ classification <- classification %>%
   mutate(
     category = factor(category, levels = c("Fish", "Marine Mammals", "Birds", 
                                            "Reptiles", "Invertebrates")),
-    subcategory = factor(subcategory, levels = unique(group))
+    subcategory = factor(subcategory, levels = unique(subcategory))
   )
 
 print(classification)

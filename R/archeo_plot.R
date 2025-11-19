@@ -2,37 +2,10 @@
 library(tidyverse)
 library(viridisLite)
 
-faunal_data <- readRDS("./data/processed/archaeo_plot_data.rds") %>% 
-  na.omit()
-
-# Prepare the data
-plot_data <- faunal_data %>%
-  group_by(category, subcategory) %>%
-  summarise(subcategory_total = sum(num_results), .groups = "drop") %>%
-  group_by(category) %>%
-  mutate(
-    category_total = sum(subcategory_total),
-    subcategory_rank = rank(-subcategory_total, ties.method = "first")
-  ) %>%
-  ungroup() %>%
-  group_by(category) %>%
-  mutate(category_total = sum(subcategory_total)) %>%
-  ungroup() %>%
-  mutate(
-    category_rank = dense_rank(desc(category_total)),
-    category = fct_reorder(category, category_rank)
-  ) %>%
-  # Order subcategories within each category
-  mutate(subcategory = fct_reorder2(subcategory, category, -subcategory_total)) %>%
-  # Arrange the data for proper ordering in the plot
-  arrange(category_rank, subcategory_rank) %>% 
-  # Order subcategories within each category
-  mutate(subcategory = fct_reorder2(subcategory, category, -subcategory_total)) %>%
-  # Arrange the data for proper ordering in the plot
-  arrange(category_rank, subcategory_rank)
+plot_data <- readRDS("./data/processed/archeo_plot_ranked.rds")
 
 # Create color palette
-n_colors <- nrow(plot_data)
+n_colors <- n_distinct(plot_data$subcategory)
 color_palette <- viridis(n_colors, option = "viridis")
 
 # Get the unique subcategories in the order they appear in plot_data
@@ -76,4 +49,5 @@ ggplot(plot_data, aes(x = subcategory_total,
     axis.title.x = element_text(size = 12, face = "bold"),
     plot.margin = margin(10, 30, 10, 10)
   ) +
-  guides(color = guide_legend(ncol = 1))
+  guides(color = guide_legend(ncol = 1)) +
+  
