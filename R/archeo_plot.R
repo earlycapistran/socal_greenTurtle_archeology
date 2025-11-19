@@ -49,5 +49,5 @@ ggplot(plot_data, aes(x = subcategory_total,
     axis.title.x = element_text(size = 12, face = "bold"),
     plot.margin = margin(10, 30, 10, 10)
   ) +
-  guides(color = guide_legend(ncol = 1)) +
+  guides(color = guide_legend(ncol = 1)) 
   

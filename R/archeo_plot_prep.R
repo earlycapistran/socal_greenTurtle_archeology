@@ -20,9 +20,9 @@ plot_data <- faunal_data %>%
   ungroup() %>% 
   # Generate ranks for each category from highest values to lowest
   mutate(
-    category_rank = dense_rank(desc(category_total))
+    category_rank = dense_rank(category_total)
   ) %>%
-  # Order categories and subcategories
+  # Order categories and subcategories from highest to lowest
   arrange(category_rank, subcategory_rank) %>%
   mutate(
     category = factor(category, levels = unique(category)),
