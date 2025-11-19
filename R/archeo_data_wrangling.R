@@ -63,5 +63,5 @@ archaeo_plot_data_full <- archaeo_plot_data %>%
   select(- species_search_term)
 
 # Save the new dataframe for plotting
-saveRDS(archaeo_plot_data_full, "./data/processed/archaeo_plot_data")
+saveRDS(archaeo_plot_data_full, "./data/processed/archaeo_plot_data.rds")
 write.csv(archaeo_plot_data_full, "./data/processed/archaeo_plot_data_clean.csv")
