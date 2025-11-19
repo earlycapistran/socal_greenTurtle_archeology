@@ -17,7 +17,7 @@ classification <- data.frame(
                   "sea turtle", "abalone", "red abalone", 
                   "black abalone", "turban snail", "mussel", "shellfish", 
                   "urchin", "chiton"),
-  group = c(rep("Large Pelagic Fish", 4), rep("Nearshore Fish", 5), 
+  subcategory = c(rep("Large Pelagic Fish", 4), rep("Nearshore Fish", 5), 
             "Small Pelagic Fish", rep("Benthic Fish", 2), rep("Fur Seals", 2), 
             rep("Sea Lions", 2), rep("True Seals", 2), rep("Small Cetaceans", 5),
             rep("Large Cetaceans", 3), "Sea Otters", rep("Seabirds", 3), 
@@ -45,7 +45,7 @@ classification <- classification %>%
   mutate(
     category = factor(category, levels = c("Fish", "Marine Mammals", "Birds", 
                                            "Reptiles", "Invertebrates")),
-    group = factor(group, levels = unique(group))
+    subcategory = factor(subcategory, levels = unique(group))
   )
 
 print(classification)
