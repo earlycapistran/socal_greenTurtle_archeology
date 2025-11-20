@@ -29,13 +29,16 @@ lolli_plot <- ggplot(plot_data, aes(x = subcategory_total, y = category)) +
                    color = subcategory),
                linewidth = 1.5) +
   # The "pop" at the end for category totals
-  geom_point(aes(x = category_total, color = subcategory), size = 3) +
+  geom_point(aes(x = category_total, 
+                 color = subcategory), 
+             size = 3) +
   geom_text(aes(x = category_total, 
                 label = scales::comma(category_total)), 
-            hjust = 0.5, 
+            hjust = -0.5, 
             size = 5) +
-  # Add points for subcategories
-  geom_point(aes(x = category_previous, 
+  # Add points for subcategories, excluding the first point (at 0)
+  geom_point(data = . %>% filter(category_previous != 0),
+             aes(x = category_previous, 
                  color = subcategory,
                  size = is_highest)) +
   scale_color_manual(values = subcategory_colors) +
