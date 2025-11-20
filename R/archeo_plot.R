@@ -24,37 +24,34 @@ subcategory_colors <- setNames(color_palette, ordered_subcategories)
 lolli_plot <- ggplot(plot_data, aes(x = subcategory_total, y = category)) +
   # The "stick" of the lollipop
   geom_segment(aes(x = 1, 
-                   xend = category_cumulative, # Reaches cumulative total for category
+                   xend = category_cumulative,
                    yend = category,
                    color = subcategory),
                linewidth = 1.5) +
   # The "pop" at the end for category totals
-  geom_point(aes(x = category_total)) +
+  geom_point(aes(x = category_total, color = subcategory), size = 3) +
   geom_text(aes(x = category_total, 
-                label = paste(scales::comma(category_total))
-                ), 
-            hjust = -0.2, 
-            size = 5)
-
-# Add points for subcategories with viridis pallette
-lolli_plot_2 <- lolli_plot +  
-  geom_point(aes(x = category_previous), 
-             size = 3, 
-             color = subcategory_colors) +
-  scale_color_manual(values = subcategory_colors)
-lolli_plot_2 
+                label = scales::comma(category_total)), 
+            hjust = 0.5, 
+            size = 5) +
+  # Add points for subcategories
+  geom_point(aes(x = category_previous, 
+                 color = subcategory,
+                 size = is_highest)) +
+  scale_color_manual(values = subcategory_colors) +
+  scale_size_manual(values = c(`FALSE` = 3, `TRUE` = 5), guide = "none")
 
 # Fixing aesthetics
-lolli_plot_3 <- lolli_plot_2 +
+lolli_plot_final <- lolli_plot +
   labs(x = "Number of References",
        y = NULL,
        color = "Subcategory") +
   scale_x_continuous(labels = scales::comma_format(),
-                     expand = expansion(mult = c(0, .1)), # Add some space on the right for labels
-                     limits = c(0, max(plot_data$category_total) * 1.1)) + # Set proper limits
-  theme_few(base_size = 16) +
+                     expand = expansion(mult = c(0, .1)),
+                     limits = c(0, max(plot_data$category_total) * 1.1)) +
+  theme_minimal() +
   theme(
-    text=element_text(family="Lato"),
+    text = element_text(family = "Lato"),
     axis.text.y = element_text(size = 12, face = "bold"),
     axis.ticks.y = element_blank(),
     panel.grid.major.y = element_blank(),
@@ -66,8 +63,6 @@ lolli_plot_3 <- lolli_plot_2 +
     axis.title.x = element_text(size = 12),
     plot.margin = margin(10, 30, 10, 10)
   ) +
-  guides(color = guide_legend(ncol = 1)) 
+  guides(color = guide_legend(ncol = 1))
 
-lolli_plot_3
-
-
+lolli_plot_final
