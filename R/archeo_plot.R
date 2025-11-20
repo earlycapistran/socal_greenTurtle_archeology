@@ -29,7 +29,7 @@ lolli_plot <- ggplot(plot_data, aes(x = subcategory_total, y = category)) +
                    color = subcategory),
                linewidth = 1.5) +
   # The "pop" at the end for category totals
-  geom_point(aes(x = category_total, 
+  geom_point(aes(x = category_cumulative, 
                  color = subcategory), 
              size = 3) +
   geom_text(aes(x = category_total, 
@@ -51,18 +51,17 @@ lolli_plot_final <- lolli_plot +
        color = "Subcategory") +
   scale_x_continuous(labels = scales::comma_format(),
                      expand = expansion(mult = c(0, .1)),
-                     limits = c(0, max(plot_data$category_total) * 1.1)) +
-  theme_minimal() +
+                     limits = c(0, max(plot_data$category_total) * 1.3)) +
+  theme_few() +
   theme(
     text = element_text(family = "Lato"),
-    axis.text.y = element_text(size = 12, face = "bold"),
+    axis.text.y = element_text(size = 14, face = "bold"),
     axis.ticks.y = element_blank(),
     panel.grid.major.y = element_blank(),
     panel.grid.minor = element_blank(),
     legend.position = "right",
-    legend.title = element_text(size = 10),
-    legend.text = element_text(size = 8),
-    plot.title = element_text(hjust = 0.5, size = 16),
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 10),
     axis.title.x = element_text(size = 12),
     plot.margin = margin(10, 30, 10, 10)
   ) +
