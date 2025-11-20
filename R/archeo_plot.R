@@ -134,6 +134,7 @@ stacked_bar <- ggplot(plot_data, aes(x = category_total, y = category)) +
     axis.title.x = element_text(size = 22),
     plot.margin = margin(10, 30, 10, 10)
   ) +
-  guides(fill = guide_legend(ncol = 1)) 
+  guides(fill = guide_legend(reverse = TRUE, ncol = 1))
+
 
 stacked_bar
