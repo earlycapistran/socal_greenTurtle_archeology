@@ -13,6 +13,9 @@ plot_data <- faunal_data %>%
   group_by(category) %>%
   mutate(
     category_total = sum(subcategory_total),
+    # Calculate cumulative and lagged values for plotting
+    category_cumulative = cumsum(subcategory_total),
+    category_previous = lag(category_cumulative, default = 0),
     # Order subcategories within each category
     subcategory_rank = rank(-subcategory_total, 
                             ties.method = "first")
@@ -27,6 +30,12 @@ plot_data <- faunal_data %>%
   mutate(
     category = factor(category, levels = unique(category)),
     subcategory = factor(subcategory, levels = unique(subcategory))
-  )
+  ) %>% 
+  # Add cumulative values to plot subcategories within categories
+  group_by(category, subcategory) %>% 
+  mutate(
+    cumulative_total = cumsum(subcategory_total)) %>% 
+  ungroup()
+  
 
 saveRDS(plot_data, "./data/processed/archeo_plot_ranked.rds")
