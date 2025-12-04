@@ -15,7 +15,7 @@ ordered_subcategories <- plot_data %>%
   arrange(category_rank, subcategory_rank) %>%
   pull(subcategory) %>%
   unique()
-,
+
 show.legend = c(color = FALSE)
 # Create a named vector of colors, matching the order of subcategories
 subcategory_colors <- setNames(color_palette, ordered_subcategories)
@@ -138,3 +138,4 @@ stacked_bar <- ggplot(plot_data, aes(x = category_total, y = category)) +
 
 
 stacked_bar
+
