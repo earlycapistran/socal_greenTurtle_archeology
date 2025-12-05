@@ -1,8 +1,12 @@
 library(dplyr)
 library(forcats)
 library(stringr)
+library(janitor)
 
-raw_data <- read.csv("./data/raw/archeo_searchTerms_data_readOnly.csv")
+# Original data
+raw_data <- read.csv("./data/raw/archeo_searchTerms_data_readOnly.csv") %>% 
+  filter(!if_all(everything(), is.na))
+
 
 ### Make classification scheme ------------------------------
 classification <- data.frame(
@@ -59,7 +63,7 @@ archaeo_plot_data <- raw_data %>%
                                "sea turtle"))
 
 archaeo_plot_data_full <- archaeo_plot_data %>% 
-  full_join(classification) %>% 
+  full_join(classification) %>% # Put everything together
   select(- species_search_term)
 
 # Save the new dataframe for plotting

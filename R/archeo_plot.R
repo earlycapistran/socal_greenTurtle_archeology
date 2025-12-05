@@ -4,7 +4,7 @@ library(viridisLite)
 library(ggthemes)
 
 
-plot_data <- readRDS("./data/processed/archeo_plot_ranked.rds")
+plot_data <- readRDS("./data/processed/archeo_plot_data.rds")
 
 # Make custom pallette based on viridis --------------
 n_colors <- n_distinct(plot_data$subcategory)

@@ -46,4 +46,5 @@ plot_data <- plot_data %>%
   left_join(highest_subcategories, by = "category") %>%
   mutate(is_highest = subcategory == highest_subcategory)
 
-saveRDS(plot_data, "./data/processed/archeo_plot_ranked.rds")
+saveRDS(plot_data, "./data/processed/archeo_plot_data.rds")
+
